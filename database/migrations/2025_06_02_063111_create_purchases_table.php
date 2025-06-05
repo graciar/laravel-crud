@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Event::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(Ticket::class)->constrained()->onDelete('cascade');
             $table->integer('qty');
-            $table->decimal('total_price');
+            $table->decimal('total_price'); 
             $table->enum('status', ['pending', 'cancelled', 'success'])->default('pending');
             $table->timestamps();
         });

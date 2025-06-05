@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Middleware\AuthMiddleware;
 
 Route::get('/', function () {
@@ -22,39 +23,8 @@ Route::get('/logout',  function(){
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
-Route::get('/home', function(){
-    return view('user/home');
-});
 
-// Route::prefix('cat')->controller(CategoryController::class)->group(function () {
-//     Route::get('/', 'index');
-//     Route::get('/add', 'add');
-//    Route::get('/edit/{id}', 'update');
-//     Route::post('/save', 'save');
-// //    ->middleware(AuthorMiddleware::class);
-//    Route::get('/delete/{id}', 'delete');
-//    Route::post('/delete/{id}', 'delete');
-// });
-
-// Route::prefix('event')->controller(EventController::class)->group(function () {
-//     Route::get('/', 'index');
-//     Route::get('/add', 'add');
-//    Route::get('/edit/{id}', 'update');
-//     Route::post('/save', 'save');
-//    Route::get('/delete/{id}', 'delete');
-//    Route::post('/delete/{id}', 'delete');
-// });
-
-// Route::prefix('ticket')->controller(TicketController::class)->group(function () {
-//     Route::get('event/{event_id}', 'index');
-//     Route::get('event/{event_id}/create', 'ticket');
-//     Route::post('/{event_id}/save', 'save');
-//     Route::get('/event/{event_id}/edit/{ticket_id}', 'update');
-//     Route::get('/delete/{id}', 'delete');
-//     Route::post('/delete/{id}', 'delete');
-// });
-
-
+// admin
 Route::middleware(AuthMiddleware::class)->group(function () {
 
     Route::get('/dashboard', function(){
@@ -88,3 +58,22 @@ Route::middleware(AuthMiddleware::class)->group(function () {
         Route::post('/event/{event_id}/delete/{ticket_id}', 'delete');
     });
 });
+
+
+
+
+// user route
+Route::get('/home', function(){
+    return view('user/home');
+});
+
+
+Route::get('/events', [EventController::class, 'showEvents']);
+
+Route::get('event/{event_id}', [TicketController::class, 'showTickets']);
+
+Route::get('event/{event_id}/{ticket_type}/details', [TicketController::class, 'showTickets']);
+Route::POST('event/{event_id}/{ticket_type}/purchase', [PurchaseController::class, 'confirm']);
+Route::POST('event/{ticket_id}/purchase/save', [PurchaseController::class, 'save']);
+
+Route::get('/mytickets', [PurchaseController::class, 'myTickets']);

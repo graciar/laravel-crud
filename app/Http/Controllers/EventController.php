@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Ticket;
 
 class EventController extends Controller
 {
@@ -47,4 +48,19 @@ class EventController extends Controller
            return view("event/delete", ["event" => $event]);
        }
    }
+
+
+   // user
+
+    public function showEvents(){
+        $events = Event::with(['category:id,name', 'tickets:id,event_id,type'])->get([
+            'id', 'title', 'description', 'category_id', 'organizer', 'date', 'location', 'status'
+        ]);
+
+
+        return view("user/events", [
+            "events"=>$events,
+        ]);
+    }
+
 }

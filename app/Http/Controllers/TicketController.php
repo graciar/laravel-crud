@@ -69,4 +69,39 @@ class TicketController extends Controller
             ]);
         }
     }
+
+
+    //user
+    
+    public function showTickets(Request $request, string $event_id){
+        $qty = $request->input('qty', 1);  // default to 1 if not present
+
+        $event = Event::findOrFail($event_id);
+        $tickets = Ticket::where('event_id', $event_id)->get();
+        return view("user/tickets", [
+            "event"=>$event, 
+            "tickets"=>$tickets,
+            "qty" => $qty,
+        ]);
+
+    }
+    
+    public function TicketDetails(){
+        //
+    }
+
+    public function confirm(Request $request, string $event_id, string $ticket_type){
+                $qty = $request->input('qty', 1);  // default to 1 if not present
+
+        $event = Event::findOrFail($event_id);
+        $ticket = Ticket::where('event_id', $event_id)
+                    ->where('type', $ticket_type)
+                    ->firstOrFail();
+        return view("user/purchase", [
+            "event"=>$event, 
+            "ticket"=>$ticket,
+                        "qty" => $qty,
+
+        ]);
+    }
 }
