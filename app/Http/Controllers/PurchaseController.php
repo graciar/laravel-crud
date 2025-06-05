@@ -39,6 +39,10 @@ class PurchaseController extends Controller
         $purchase->total_price = $request->total;
         $purchase->save();
 
+         // Update available seats
+        $ticket->avail_seats -= $request->qty;
+        $ticket->save();
+
         return redirect('/home');
     }
 
