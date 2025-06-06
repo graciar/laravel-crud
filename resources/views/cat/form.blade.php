@@ -12,10 +12,10 @@
             @endif
 
             <input type="text" name="category"
-                value="{{ isset($category) ? $category->name : "" }} " 
+                value="{{ isset($category) ? $category->name : '' }} " 
                 placeholder="Enter Category"
                 class='form-control mb-3'>
-            <input type="submit" name="submit" value="submit">
+            <input type="submit" name="submit" class="btn btn-success" value="submit">
         </form> 
     </div>   
 

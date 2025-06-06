@@ -21,6 +21,16 @@ class EventController extends Controller
         ]);
     }
 
+    public function update(string $id){
+        $event = Event::with(['category'])->find($id);
+        $categories = Category::all(["id", "name"]);
+
+        return view("event/form", [
+            "categories" => $categories,
+            "event" => $event,
+        ]);
+    }
+
     public function save(Request $request){
         if(isset($request->id)){
             $event = Event::find($request->id);

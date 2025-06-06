@@ -30,7 +30,7 @@
                     <a href="/ticket/event/{{ $event->id }}" class="btn btn-info">Ticket</a>
                 </td>
                 <td>
-                    <a href="/event/update/{{ $event->id }}" class="btn btn-primary">Edit</a>
+                    <a href="/event/edit/{{ $event->id }}" class="btn btn-primary">Edit</a>
                 </td>
                 <td>
                     <a href="event/delete/{{ $event->id }}" class="btn btn-danger">Delete</a>

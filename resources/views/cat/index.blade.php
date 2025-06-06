@@ -7,7 +7,6 @@
 
     <a href="/cat/add" class="btn btn-primary">Add Category</a>
 
-    <!-- table category -->
     <table class="table table-sm table-bordered mt-4">
         <thead>
             <tr>
