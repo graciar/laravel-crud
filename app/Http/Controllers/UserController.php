@@ -64,7 +64,6 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        // Validate input
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -74,8 +73,6 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-
-            // return redirect()->intended('/dashboard');
 
             if (Auth::user()->role === 'admin') {
                 return redirect('/dashboard')->with('success', 'Registration successful!');

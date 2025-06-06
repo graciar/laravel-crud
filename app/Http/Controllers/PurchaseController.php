@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class PurchaseController extends Controller
 {
     public function confirm(Request $request, string $event_id, string $ticket_type){
-        $qty = $request->input('qty');  // default to 1 if not present
+        $qty = $request->input('qty');  
         $event = Event::findOrFail($event_id);
         $ticket = Ticket::where('event_id', $event_id)
                     ->where('type', $ticket_type)
@@ -50,7 +50,6 @@ class PurchaseController extends Controller
         $purchases = Purchase::with(['ticket', 'event'])
             ->where('user_id', Auth::id())
             ->get(['id', 'user_id', 'event_id', 'ticket_id', 'qty', 'total_price', 'status']);
-
 
         return view("user/mytickets", ["purchases"=>$purchases]);
 
