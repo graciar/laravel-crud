@@ -13,10 +13,11 @@
         <input type="hidden" name="id" value="{{ $ticket->id }}"/>
     @endif
 
-    <input type="type" name="type" 
-        value="{{ isset($ticket) ? $ticket->type : "" }} "  
-        class='form-control mb-3'
-        placeholder="tickets type">
+    <input type="text" name="type"  
+    value="{{ isset($ticket) ? $ticket->type : '' }}"  
+    class="form-control mb-3"
+    placeholder="{{ isset($ticket) ? '' : 'ticket type' }}">
+
 
     <input type="number" name="seats" 
         value="{{ isset($ticket) ? $ticket->seats : '' }}" 

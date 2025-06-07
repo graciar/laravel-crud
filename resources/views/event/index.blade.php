@@ -2,8 +2,8 @@
 @section('title', 'Admin')
 
 @section('content')
-<div class="container mt-3">
-    <h5>event</h5>
+<div class="container mt-4">
+    <h1 class="mb-3">Event</h1>
 
     <a href="/event/add" class="btn btn-primary">Add Event</a>
     <table class="table table-sm table-bordered mt-4">

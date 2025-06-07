@@ -2,8 +2,8 @@
 @section('title', 'Admin')
 
 @section('content')
-<div class="container mt-3">
-    <h5>category</h5>
+<div class="container mt-4">
+    <h1 class="mb-3">Category</h1>
 
     <a href="/cat/add" class="btn btn-primary">Add Category</a>
 

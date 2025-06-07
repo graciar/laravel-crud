@@ -2,8 +2,8 @@
 @section('title', 'events')
 
 @section('content')
-<div>
-    <h1 class='mt-3'>events</h1>
+<div class="container py-5">
+    <h2 class="mb-4">Events</h2>
 
    <div class="d-flex flex-wrap gap-3">
         @foreach($events as $event)
